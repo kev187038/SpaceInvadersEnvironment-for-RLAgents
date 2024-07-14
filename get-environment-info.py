@@ -2,7 +2,6 @@ import gymnasium as gym
 import numpy as np
 import random
 from tqdm import tqdm
-import matplotlib.pyplot as plt
 from moviepy.editor import ImageSequenceClip
 import sys
 
