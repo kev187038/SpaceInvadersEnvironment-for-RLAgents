@@ -12,7 +12,6 @@ from DQN import ReplayBuffer
 #DDQN
 #Double DQN decouples action selection from action evaluation in training
 #So we mofify the train function
-#DDQN CHANGES IN TRAINING FUNCTION
 class DDQNAgent:
     def __init__(self, state_shape, num_actions, buffer_size, batch_size, gamma, alpha, epsilon, epsilon_decay, min_epsilon):
         self.state_shape = state_shape

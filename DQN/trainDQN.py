@@ -19,7 +19,7 @@ agent = DQNAgent(
     epsilon=1.0,
     epsilon_decay=0.999,
     min_epsilon=0.01,
-    use_target_model=False #Change this to true if you want to train a target-model DQN
+    use_target_model=False #Change this to true if you want to train a target-model DQN (DQN-TM)
 )
 
 tup = train_dqn(env, agent, episodes=1000)

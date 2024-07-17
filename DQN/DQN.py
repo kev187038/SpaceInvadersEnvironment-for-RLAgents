@@ -69,14 +69,14 @@ class DQNAgent:
             q_values = self.model(state) #compute actions with the NN and their Q value
         return torch.argmax(q_values).item() #return highest value action one (one integer) 
 
-    def remember(self, state, action, reward, next_state, done): #memory replay allows us to remember state-action-reward-next_state-termination
+    def remember(self, state, action, reward, next_state, done): #memory replay allows us to remember <state, action, reward, next_state, termination>
         self.memory.add((state, action, reward, next_state, done)) #store experience in replay buffer
 
     #sample batch from replay buffer and then train NN, so the NN will compress the table representation.
     def train(self):
 
         batch = self.memory.sample(self.batch_size) #sample random batch of experiences
-        states, actions, rewards, next_states, dones = zip(*batch) #get all states, actions,... in order
+        states, actions, rewards, next_states, dones = zip(*batch) 
 
         states = torch.FloatTensor(states)
         next_states = torch.FloatTensor(next_states)
@@ -97,7 +97,7 @@ class DQNAgent:
         loss = self.loss_fn(q_values, target_q_values.detach()) #compute loss between actual Q value and calculated one
 
         self.optimizer.zero_grad() #employ adam optimizer
-        loss.backward()  #backward propagation to compute gradients and update weights
+        loss.backward()  #backw-propagation to compute gradients and update weights
         self.optimizer.step()
         return loss.item() #return loss value to plot loss
 
@@ -132,7 +132,7 @@ def train_dqn(env, agent, episodes):
     for episode in range(episodes):
         losses = []
         state, info = env.reset()
-        state = np.reshape(state, [1, *state.shape]) #we don't need it, but in the general case the input is not necessarily a 1 dimensional array
+        state = np.reshape(state, [1, *state.shape]) 
         done = False
         while not done:
             action = agent.act(state)
@@ -144,7 +144,7 @@ def train_dqn(env, agent, episodes):
             state = next_state
             total_reward += reward
             if agent.memory.size() > agent.batch_size:
-              loss = agent.train() #train NN for computing actions at every
+              loss = agent.train() #train NN for computing actions at every step
               losses.append(loss)
 
         avg_losses.append(np.mean(losses))
@@ -181,7 +181,7 @@ def test_dqn(env, agent, episodes, render):
     return total_reward / episodes
 
 
-def get_reward_evolution(rewards):
+def get_reward_evolution(rewards): #Calculates average reward for 1 episode over the last 100 episodes
   avgs = []
   for r in range(len(rewards)):
     if(r < 99):
