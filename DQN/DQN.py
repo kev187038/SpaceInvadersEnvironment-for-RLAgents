@@ -123,7 +123,6 @@ class DQNAgent:
         self.min_epsilon = checkpoint['min_epsilon']
         self.batch_size = checkpoint['batch_size']
 
-# Example training loop, when training we estimate the Q function through exploration, so the network  will estimate best action to take
 def train_dqn(env, agent, episodes): 
     rewards = []
     actions = []
