@@ -131,7 +131,7 @@ class QTable:
 
       while not done:
         obs = bytes(obs)
-        action = self.policy(obs, self.eps, self.Q)
+        action = self.policy(obs, self.eps, self.Q, env)
         obs, reward, terminated, truncated, info= env.step(action)
         done = terminated or truncated
         rewards.append(reward)
