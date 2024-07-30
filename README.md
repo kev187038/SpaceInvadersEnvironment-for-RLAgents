@@ -1,4 +1,4 @@
-In this project the SpaceInvadees gaming Environment was used to train and test a Reinforcement Learning agent on, using different techniques. 
+In this project the SpaceInvaders gaming Environment was used to train and test a Reinforcement Learning agent, using different techniques. 
 In the repo are available the source code, the test results, and a report with all the details. The experience was important to learn how to implement and neural network architecture and both basic and
 Q-Learning. 
 
